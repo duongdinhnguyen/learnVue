@@ -1,36 +1,62 @@
-
-<template>
-  <header>
-    <form @submit.prevent="onSubmit">
-      <button v-on:click="increment">{{ state.count }}</button>
-      <span v-html="state.rawHtml"></span>
-      <span v-bind="state.elementAttribute">v-bind</span>
-      <button type="submit">Submit</button>
-    </form>
-  </header>
-</template>
-
-<script setup>
-  import { reactive } from "vue";
+<script setup lang="ts">
+  import { computed, reactive} from "vue"
+  import TodoList from "./views/TodoList.vue"
 
   const state = reactive({
-    count: 0,
-    title: "Đây là title",
-    rawHtml: `<span style="color: red">This should be red.</span>`,
-    elementAttribute: {
-      data: 1,
-      title: 'title Attribute'
-    }
+    todo: '',
+    todoCheckbox: [],
+    todos: []
   })
-  
-  function increment() {
-    state.count ++
-  }
-  function onSubmit() {
-    console.log(12222)
+
+  function addTodo() {
+    state.todos.push(state.todo)
+    state.todo = ''
   }
 
-  function mounted() {
-    console.log(12345)
+  function removeTodo(todo) {
+    state.todos = state.todos.filter((item, index) => item != todo)
   }
+
+  // const todoCheckbox = computed(() => {
+  //   console.log(state);
+    
+  // })
+
+  function deleteTodoCheckbox () {
+    console.log(state.todoCheckbox);
+    
+    state.todos = state.todos.filter((todo, index) => state.todoCheckbox.indexOf(todo) == -1)
+    state.todoCheckbox = []
+  }
+
+  function checkboxAll () {
+    state.todoCheckbox = state.todos
+  }
+
 </script>
+
+<template>
+  <div>
+    <div>
+      <input type="text" v-model="state.todo">
+      <button @click="addTodo">Add Todo</button>
+      <button @click="deleteTodoCheckbox">Xóa các mục đã chọn</button>
+    </div>
+    <div>
+      <button @click="checkboxAll">Chọn tất cả</button>
+    </div>
+  
+    <div>
+      <ul>
+
+        <li 
+          v-for="(todo, index) in state.todos" :key="index"
+        >
+          <input type="checkbox" name="todo-name" :id="'todo-check-box' + index" v-model="state.todoCheckbox" :value="todo">
+          <label :for="'todo-check-box' + index">{{ todo }}</label> 
+          <button @click="removeTodo(todo)">x</button>
+        </li>
+    </ul>
+    </div>
+  </div>
+</template>
