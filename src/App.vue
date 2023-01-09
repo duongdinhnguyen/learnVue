@@ -18,13 +18,10 @@
   }
 
   // const todoCheckbox = computed(() => {
-  //   console.log(state);
-    
+  //   console.log(state); 
   // })
 
   function deleteTodoCheckbox () {
-    console.log(state.todoCheckbox);
-    
     state.todos = state.todos.filter((todo, index) => state.todoCheckbox.indexOf(todo) == -1)
     state.todoCheckbox = []
   }
