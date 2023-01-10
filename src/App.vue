@@ -35,7 +35,7 @@
 <template>
   <div>
     <div>
-      <input type="text" v-model="state.todo">
+      <input type="text" v-model="state.todo" @keyup.enter="addTodo">
       <button @click="addTodo">Add Todo</button>
       <button @click="deleteTodoCheckbox">Xóa các mục đã chọn</button>
     </div>
