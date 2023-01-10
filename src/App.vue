@@ -10,7 +10,7 @@
   </header>
 </template>
 
-<script setup>
+<script lang="ts" setup>
   import { reactive } from "vue";
 
   const state = reactive({
