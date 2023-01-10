@@ -2,7 +2,8 @@
     import { reactive } from "vue";
     import Component3 from "./Component3.vue";
     defineProps({
-        name: String
+        name: String,
+        getDataFromChild: Function
     })
 
     const stateComponent2 = reactive({
@@ -17,6 +18,7 @@
     <div>
         Component 2: {{ name }}
         Emit: {{ stateComponent2.nameCom2 }}
+        Get Data: <button @click="getDataFromChild(stateComponent2.nameCom2)">Submit</button>
     </div>
     <Component3 :name="name" @emit_c3="(data) => stateComponent2.nameCom2 = data"/>
 </template>
