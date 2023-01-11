@@ -10,6 +10,16 @@
                 About Us
             </p>
         </router-link>
+        <router-link to="/login">
+            <p class="item-menu">
+                Login
+            </p>
+        </router-link>
+        <router-link to="/register">
+            <p class="item-menu">
+                Register
+            </p>
+        </router-link>
     </div>
 </template>
 
