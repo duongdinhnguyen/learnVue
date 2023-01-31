@@ -1,8 +1,9 @@
-<script lang="ts" setup>
-    import MainHeader from "./components/MainHeader.vue";
+<script setup lang="ts">
+  import MainHeader from "./components/MainHeader.vue";
+
 </script>
 
 <template>
-   <MainHeader/>
-   <router-view></router-view>
+  <MainHeader/>
+  <router-view></router-view>
 </template>
